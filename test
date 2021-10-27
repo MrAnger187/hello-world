@@ -1,0 +1,50 @@
+package tierePackageAbstrakt;
+
+import java.time.LocalDate;
+import java.time.Period;
+
+// Basis Klasse für Haustier
+public class Haustier {
+
+    // protected: heißt die Klasse abgeleitete Klassen und alle Klassen im selben Package
+    protected String kosename;
+    protected LocalDate geburtsdatum;
+
+    // Attribute bei der erzeugung initialisieren
+    public Haustier(String name,LocalDate datum){
+        this.kosename=name;
+        this.geburtsdatum=datum;
+        System.out.println("Konstruktor von Haustier");
+    }
+
+    public final String getKosename() {
+        return kosename;
+    }
+
+    public final LocalDate getGeburtsdatum() {
+        return geburtsdatum;
+    }
+
+
+    public void zeigeDich(){
+        System.out.printf("Hallo mein Name ist %s, mein Geburtsdatum ist %s\n",kosename,geburtsdatum);
+    }
+
+    public final int getAlter(){
+        LocalDate heute = LocalDate.now();
+        // Spanne zwischen den daten berechen
+        Period spanne = Period.between(geburtsdatum,heute);
+        // Die Property Jahre aus dem Ergebniss zurückliefern
+        return spanne.getYears();
+    }
+
+    @Override
+    public String toString() {
+        return "kosename='" + kosename + '\'' +
+                ", geburtsdatum=" + geburtsdatum;
+    }
+
+    public void bewegDich(){
+        System.out.printf("%s bewegt sich ????\n",kosename);
+    }
+}
